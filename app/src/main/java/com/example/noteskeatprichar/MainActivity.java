@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements EditNoteDialogFragment.EditNoteDialogListener{
     ArrayList<Note> notes;
-    NotesAdapter notes_adapter;
+    ArrayAdapter<Note> notes_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements EditNoteDialogFra
 
     private void etNoteEnterListenerMethod(){
         EditText etNote = findViewById(R.id.etNote);
-        etNote.setOnKeyListener(new View.OnKeyListener()
+        etNote.setOnKeyListener(new View.OnKeyListener(){
         @Override
         public boolean onKey(View view, int i, KeyEvent keyEvent){
             if(keyEvent.getAction() == KeyEvent.ACTION_DOWN || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER || keyEvent.getAction() == KeyEvent.KEYCODE_NUMPAD_ENTER){
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements EditNoteDialogFra
         notes.add(new Note("First Note"));
         notes.add(new Note("Second Note"));
 
-        notes_adapter new NotesAdapter(getBaseContext(), R.layout.note_layout, notes, getSupportFragmentManager());
+        notes_adapter new ArrayAdapter(getBaseContext(), android.R.layout.simple_list_item_1, notes);
         lvList.setAdapter(notes_adapter);
 
         notes.add(new Note("Joshua Caballero Keatprichar"));
