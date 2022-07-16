@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements EditNoteDialogFragment.EditNoteDialogListener{
     ArrayList<Note> notes;
     NotesAdapter notes_adapter;
 
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setListAdapterMethos();
+        setListAdapterMethod();
         btnAddListenerMethod();
         etNoteEnterListenerMethod();
     }
@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity{
         notes.add(new Note("First Note"));
         notes.add(new Note("Second Note"));
 
-        notes_adapter new NotesAdapter(getBaseContext(), R.layout.note_layout, notes);
+        NotesAdapter notes_adapter = this.notes_adapter;
+        new NotesAdapter(getBaseContext(), R.layout.note_layout, notes, getSupportFragmentManager());
         lvList.setAdapter(notes_adapter);
 
         notes.add(new Note("Joshua Caballero Keatprichar"));
